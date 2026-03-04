@@ -7,4 +7,6 @@ import com.url.url_shortener.security.jwt.JwtAuthenticationResponse;
 public interface UserService {
     User registerUser(User user);
     JwtAuthenticationResponse authenticationUser(LoginRequest request);
+
+    User findByUsername(String name);
 }
