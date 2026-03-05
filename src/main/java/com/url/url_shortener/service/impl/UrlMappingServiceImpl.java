@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -29,6 +30,13 @@ public class UrlMappingServiceImpl implements UrlMappingService {
 
         UrlMapping savedUrlMapping = urlMappingRepository.save(urlMapping);
         return convertToDto(savedUrlMapping);
+    }
+
+    @Override
+    public List<UrlMappingDTO> getUrlsByUser(User user) {
+        return urlMappingRepository.findByUser(user).stream()
+                .map(this::convertToDto)
+                .toList();
     }
 
     private UrlMappingDTO convertToDto(UrlMapping urlMapping){
